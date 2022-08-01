@@ -386,6 +386,7 @@
     <Content Include="Content\template\js\ion-range-slider.js" />
     <Content Include="Content\template\js\jq.tablesort.js" />
     <Content Include="Content\template\js\jquery-file-upload.js" />
+    <Content Include="Content\template\js\jquery.jeditable.min.js" />
     <Content Include="Content\template\js\js-grid.js" />
     <Content Include="Content\template\js\just-gage.js" />
     <Content Include="Content\template\js\light-gallery.js" />
@@ -1251,6 +1252,7 @@
     <Content Include="Views\Account\UserProfile.cshtml" />
     <Content Include="Views\Tyre\Import.cshtml" />
     <Content Include="Views\Tyre\Index.cshtml" />
+    <Content Include="Views\Tyre\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

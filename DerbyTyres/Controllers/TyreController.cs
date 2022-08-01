@@ -56,7 +56,7 @@ namespace DerbyTyres.Controllers
                     Microsoft.Office.Interop.Excel.Worksheet worksheet = workbook.ActiveSheet;
                     Microsoft.Office.Interop.Excel.Range range = worksheet.UsedRange;
                     List<Tyre> list = new List<Tyre>();
-                    for (int row = 2; row < range.Rows.Count; row++)
+                    for (int row = 2; row <= range.Rows.Count; row++)
                     {
                         var Tyre = new Tyre();
                         Tyre.TireSizeDesignation = ((Microsoft.Office.Interop.Excel.Range)range.Cells[row, 1]).Text;

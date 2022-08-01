@@ -45,30 +45,27 @@
 
                     @if (User.IsInRole("Admin") == true)
                     {
-                <a class="navbar-brand brand-logo" href="@Url.Action("Dashboard", "Admin")" style="color:white;">
-                    <img style="height: 70px;width: 70px;margin-left: 40px;" src="~/Content/template/images/DerbyTyres.png" />
-                </a>
-                                <a class="navbar-brand brand-logo-mini" href="@Url.Action("Dashboard", "Admin")" style="color:white;">
-                                    <img src="~/Content/template/images/DerbyTyres.png" />
-                                </a> }
+        <a class="navbar-brand brand-logo" href="@Url.Action("Dashboard", "Admin")" style="color:white;">
+            <img style="height: 70px;width: 70px;margin-left: 40px;" src="~/Content/template/images/DerbyTyres.png" />
+        </a>
+                        <a class="navbar-brand brand-logo-mini" href="@Url.Action("Dashboard", "Admin")" style="color:white;">
+                            <img src="~/Content/template/images/DerbyTyres.png" />
+                        </a> }
 
 
                     else if (User.IsInRole("User"))
                     {
 
-                <a class="navbar-brand brand-logo" href="@Url.Action("Dashboard", "User")" style="color:white;">
-                    <img style="height: 70px;width: 70px;margin-left: 40px;" src="~/Content/template/images/DerbyTyres.png" />
-                </a>
-                                <a class="navbar-brand brand-logo-mini" href="@Url.Action("Dashboard", "User")" style="color:white;">
-                                    <img src="~/Content/template/images/DerbyTyres.png" />
-                                </a>
-
-                    }
-                    else
-                    {
-                                    <img src="~/Content/template/images/logo.png" />
-                                     <img src="~/Content/template/images/logo.png" />
-                    }
+        <a class="navbar-brand brand-logo" href="@Url.Action("Dashboard", "User")" style="color:white;">
+            <img style="height: 70px;width: 70px;margin-left: 40px;" src="~/Content/template/images/DerbyTyres.png" />
+        </a>
+                        <a class="navbar-brand brand-logo-mini" href="@Url.Action("Dashboard", "User")" style="color:white;">
+                            <img src="~/Content/template/images/DerbyTyres.png" />
+                        </a> }
+                                    else
+                                    {
+                        <img src="~/Content/template/images/logo.png" />
+                                        <img src="~/Content/template/images/logo.png" />}
 
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                         <span class="typcn typcn-th-menu"></span>
@@ -80,13 +77,13 @@
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
 
-                       
-                    
-                        <img src="~/Content/template/images/admin (1).png" alt="profile" />
+
+
+                            <img src="~/Content/template/images/admin (1).png" alt="profile" />
                             @if (Session["User"] != null)
                             {
-                        <span class="nav-profile-name">@Session["User"].ToString()</span>
-                                        <i class="mdi mdi-arrow-down"></i>}
+                <span class="nav-profile-name">@Session["User"].ToString()</span>
+                                <i class="mdi mdi-arrow-down"></i>}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                             <a href="@Url.Action("UserProfile","Account")" class="dropdown-item">
@@ -130,30 +127,30 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- partial -->
             <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     @if (User.IsInRole("Admin") == true)
                     {
-                <li class="nav-item">
+        <li class="nav-item">
 
-                    <a class="nav-link" href="@Url.Action("Dashboard", "Admin")">
-                        <i class="typcn typcn-device-desktop menu-icon"></i>
-                        <span class="menu-title">Dashboard</span>
-                    </a>
-                </li>
- }
-            else if (User.IsInRole("User") == true)
-            {
-                <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Dashboard", "Admin")">
+                <i class="typcn typcn-device-desktop menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li> }
+                    else if (User.IsInRole("User") == true)
+                    {
+        <li class="nav-item">
 
-                    <a class="nav-link" href="@Url.Action("Dashboard", "User")">
-                        <i class="typcn typcn-device-desktop menu-icon"></i>
-                        <span class="menu-title">Dashboard</span>
-                    </a>
-                </li>}
+            <a class="nav-link" href="@Url.Action("Dashboard", "User")">
+                <i class="typcn typcn-device-desktop menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
+}
 
 
 
@@ -161,27 +158,26 @@
                     {
 
 
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "User")">
-                        <i class="mdi mdi-account-settings menu-icon"></i>
-                        <span class="menu-title">Users</span>
-                    </a>
-                </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Index", "User")">
+                <i class="mdi mdi-account-settings menu-icon"></i>
+                <span class="menu-title">Users</span>
+            </a>
+        </li>
 
 
 
 
 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="@Url.Action("Index", "Role")">
-                                        <i class="mdi mdi-account-card-details menu-icon"></i>
-                                        <span class="menu-title">Roles</span>
-                                    </a>
-                                </li>
-}
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "Role")">
+                                <i class="mdi mdi-account-card-details menu-icon"></i>
+                                <span class="menu-title">Roles</span>
+                            </a>
+                        </li>}
 
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index", "Tyres")">
+                        <a class="nav-link" href="@Url.Action("Index", "Tyre")">
                             <i class="mdi mdi-credit-card-settings menu-icon"></i>
                             <span class="menu-title">Tyres</span>
                         </a>
@@ -215,7 +211,6 @@
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
                 <footer class="footer">
-                    
                 </footer>
                 <!-- partial -->
             </div>
@@ -245,6 +240,8 @@
     <script src="~/Content/template/js/template.js"></script>
     <script src="~/Content/template/js/settings.js"></script>
     <script src="~/Content/template/js/todolist.js"></script>
+    <script src="~/Content/template/js/jquery.jeditable.min.js"></script>
+
     <!-- endinject -->
     <!-- Custom js for this page-->
     <!-- End custom js for this page-->
