@@ -22,6 +22,25 @@ namespace DerbyTyres.Controllers
         [HttpPost]
         public ActionResult Action(int ID, int Sold)
         {
+            var Tyre = TyreServices.Instance.GetTyre(ID);
+            float TyreNewStock = Tyre.NewStock - Sold;
+            float TyreNewSold = Tyre.NewSold + Sold;
+            Tyre.NewSold = TyreNewSold;
+            Tyre.NewStock = TyreNewStock;
+            TyreServices.Instance.UpdateTyre(Tyre);
+            return RedirectToAction("Index", "Inventory");
+        }
+
+
+        [HttpPost]
+        public ActionResult ActionUsed(int ID, int Sold)
+        {
+            var Tyre = TyreServices.Instance.GetTyre(ID);
+            float TyreUsedStock = Tyre.UsedStock - Sold;
+            float TyreUsedSold = Tyre.UsedSold + Sold;
+            Tyre.UsedSold = TyreUsedSold;
+            Tyre.UsedStock = TyreUsedStock;
+            TyreServices.Instance.UpdateTyre(Tyre);
 
             return RedirectToAction("Index", "Inventory");
         }

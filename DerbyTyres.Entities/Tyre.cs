@@ -22,7 +22,11 @@ namespace DerbyTyres.Entities
         public float REmile { get; set; }
         public string UsedTyres { get; set; }
         public string BrandNewTyres { get; set; }
-        public float Stock { get; set; }
-        public float Sold { get; set; }
+        public float UsedStock { get; set; }
+        public float NewStock { get; set; }
+        public float UsedSold { get; set; }
+        public float NewSold { get; set; }
+        public string Brand { get; set; }
+        public string LocatedIn { get; set; }
     }
 }

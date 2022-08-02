@@ -3,7 +3,11 @@
     ViewBag.Title = "Index";
     WebGrid grid = new WebGrid(Model.StockAvailableTires, rowsPerPage: 100);
 }
-
+<style>
+    .prices {
+        background-color: limegreen;
+    }
+</style>
 <div class="card">
     <div class="card-body">
         <h2>Stock</h2>
@@ -34,12 +38,15 @@
 
 grid.Column(header: "ID", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="ID">@item.ID</div></text>),
 grid.Column(header: "TireSizeDesignation", format:@<text><div data-id="@item.ID" data-propertyname="TireSizeDesignation">@item.TireSizeDesignation</div></text>),
+grid.Column(header: "UsedTyres", format:@<text><div class="edit" style="background-color:limegreen;" data-id="@item.ID" data-propertyname="UsedTyres">@item.UsedTyres</div></text>, style: "prices"),
+grid.Column(header: "BrandNewTyres", format:@<text><div style="background-color:limegreen;" class="edit" data-id="@item.ID" data-propertyname="BrandNewTyres">@item.BrandNewTyres</div></text>, style: "prices"),
+grid.Column(header: "UsedStock", format:@<input id="UsedStock+@item.ID" class="form-control col-md-12" disabled data-id="@item.ID" data-propertyname="UsedStock" value="@item.UsedStock" />),
+grid.Column(header: "NewStock", format:@<input id="NewStock+@item.ID" class="form-control col-md-12" disabled data-id="@item.ID" data-propertyname="NewStock" value="@item.NewStock" />),
+grid.Column(header: "Used Sold", format:@<input id="UsedSold+@item.ID" class="edit form-control col-md-12" data-id="@item.ID" data-propertyname="UsedSold" value="@item.UsedSold" />),
+grid.Column(header: "New Sold", format:@<input id="NewSold+@item.ID" class="edit form-control col-md-12" data-id="@item.ID" data-propertyname="NewSold" value="@item.NewSold" />),
+grid.Column(header: "Sell New ", format: @<button class="ActionButton btn btn-primary" data-id="@item.ID">SOLD NEW</button>),
+grid.Column(header: "Sell Used", format: @<button class="UsedActionButton btn btn-primary" data-id="@item.ID">SOLD USED</button>)
 
-grid.Column(header: "UsedTyres", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="UsedTyres">@item.UsedTyres</div></text>),
-grid.Column(header: "BrandNewTyres", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="BrandNewTyres">@item.BrandNewTyres</div></text>),
-grid.Column(header: "Stock", format:@<text><div data-id="@item.ID" data-propertyname="Stock">@item.Stock</div></text>),
-grid.Column(header: "Sold", format:@<input id="@item.ID" class="edit form-control col-md-12" data-id="@item.ID" data-propertyname="Sold" value="@item.Sold" />),
-grid.Column(header: "Action", format: @<button class="ActionButton btn btn-primary" data-id="@item.ID">SOLD</button>)
 
 )
 )
@@ -94,24 +101,50 @@ grid.Column(header: "Action", format: @<button class="ActionButton btn btn-prima
 
     $(".ActionButton").click(function () {
         let ID = $(this).attr("data-id");
-        var Sold = document.getElementById(ID);
-		$.ajax({
-			url: '@Url.Action("Action", "Inventory")',
-			type: "post",
-            data: {
-                ID: ID,
-                Sold: Sold.value
-            }
-		})
-		.done(function (response) {
-			if(response.Success)
-			{
-				location.reload();
-			}
-			else {
-				$(".errorDiv").html(response.Message);
-			}
-		});
+        var Sold = document.getElementById("NewSold+" + ID);
+        var NewStock = document.getElementById("NewStock+" + ID).value;
+        if (Sold.value != "" && NewStock < Sold.value) {
+
+            $.ajax({
+                url: '@Url.Action("Action", "Inventory")',
+                type: "post",
+                data: {
+                    ID: ID,
+                    Sold: Sold.value
+                }
+            })
+                .done(function () {
+                    window.location.href = "@Url.Action("Index","Inventory")";
+
+                });
+                
+        } else {
+            alert("Invalid Quantity");
+        }
+    });
+
+
+    $(".UsedActionButton").click(function () {
+        let ID = $(this).attr("data-id");
+        var Sold = document.getElementById("UsedSold+" + ID);
+        var UsedStock = document.getElementById("UsedStock+" + ID);
+        if (Sold.value != "" && UsedStock.value < Sold.value) {
+            $.ajax({
+                url: '@Url.Action("ActionUsed", "Inventory")',
+                type: "post",
+                data: {
+                    ID: ID,
+                    Sold: Sold.value
+                }
+            })
+                .done(function () {
+                    window.location.href = "@Url.Action("Index","Inventory")";
+
+                });
+        }
+        else {
+            alert("Invalid Quantity");
+        }
 	});
 
 

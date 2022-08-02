@@ -4,7 +4,11 @@
     WebGrid grid = new WebGrid(Model.Tyres, rowsPerPage: 100);
 
 }
-
+<style>
+    .prices{
+        background-color:limegreen;
+    }
+</style>
 <div class="card">
     <div class="card-body">
         <h2>Tyres</h2>
@@ -34,20 +38,24 @@
                     columns: grid.Columns(
 
 grid.Column(header: "ID", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="ID">@item.ID</div></text>),
-grid.Column(header: "TireSizeDesignation", format:@<text><div data-id="@item.ID" data-propertyname="TireSizeDesignation">@item.TireSizeDesignation</div></text>),
-grid.Column(header: "ODmm", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="ODmm">@item.ODmm</div></text>),
-grid.Column(header: "ODin", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="ODin">@item.ODin</div></text>),
-grid.Column(header: "SWmm", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="SWmm">@item.SWmm</div></text>),
-grid.Column(header: "SWin", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="SWin">@item.SWin</div></text>),
+grid.Column(header: "Tire Size Designation", format:@<text><div data-id="@item.ID" data-propertyname="TireSizeDesignation">@item.TireSizeDesignation</div></text>),
+grid.Column(header: "OD (mm)", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="ODmm">@item.ODmm</div></text>),
+grid.Column(header: "OD (in)", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="ODin">@item.ODin</div></text>),
+grid.Column(header: "SW (mm)", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="SWmm">@item.SWmm</div></text>),
+grid.Column(header: "SW (in)", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="SWin">@item.SWin</div></text>),
 grid.Column(header: "AR", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="AR">@item.AR</div></text>),
-grid.Column(header: "SHmm", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="SHmm">@item.SHmm</div></text>),
-grid.Column(header: "SHin", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="SHin">@item.SHin</div></text>),
-grid.Column(header: "CLmm", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="CLmm">@item.CLmm</div></text>),
-grid.Column(header: "CLin", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="CLin">@item.CLin</div></text>),
-grid.Column(header: "REkm", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="REkm">@item.REkm</div></text>),
-grid.Column(header: "REmile", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="REmile">@item.REmile</div></text>),
-grid.Column(header: "UsedTyres", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="UsedTyres">@item.UsedTyres</div></text>),
-grid.Column(header: "BrandNewTyres", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="BrandNewTyres">@item.BrandNewTyres</div></text>),
+grid.Column(header: "SH (mm)", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="SHmm">@item.SHmm</div></text>),
+grid.Column(header: "SH (in)", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="SHin">@item.SHin</div></text>),
+grid.Column(header: "CL (mm)", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="CLmm">@item.CLmm</div></text>),
+grid.Column(header: "CL (in)", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="CLin">@item.CLin</div></text>),
+grid.Column(header: "RE (km)", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="REkm">@item.REkm</div></text>),
+grid.Column(header: "RE (mile)", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="REmile">@item.REmile</div></text>),
+grid.Column(header: "Used Tyres", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="UsedTyres">@item.UsedTyres</div></text>,style: "prices"),
+grid.Column(header: "Used Stock", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="UsedStock">@item.UsedStock</div></text>),
+grid.Column(header: "Brand New Tyres", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="BrandNewTyres">@item.BrandNewTyres</div></text>, style: "prices"),
+grid.Column(header: "New Stock", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="NewStock">@item.NewStock</div></text>),
+grid.Column(header: "Brand", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="Brand">@item.Brand</div></text>),
+grid.Column(header: "Located In", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="LocatedIn">@item.LocatedIn</div></text>),
 grid.Column(header: "Action", format: @<a class="btn btn-warning" href="@Url.Action("Delete","Tyre",new {ID = item.ID })">DELETE</a>)
 )
 )

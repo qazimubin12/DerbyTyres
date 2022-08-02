@@ -40,13 +40,13 @@
     <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-            <div style="background-color:dodgerblue;" class="navbar-brand-wrapper d-flex justify-content-center">
+            <div style="background-color:black;" class="navbar-brand-wrapper d-flex justify-content-center">
                 <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
 
                     @if (User.IsInRole("Admin") == true)
                     {
         <a class="navbar-brand brand-logo" href="@Url.Action("Dashboard", "Admin")" style="color:white;">
-            <img style="height: 70px;width: 70px;margin-left: 40px;" src="~/Content/template/images/DerbyTyres.png" />
+            <img style="height: 70px;width: 60px;margin-left: 40px;" src="~/Content/template/images/DerbyTyres.png" />
         </a>
                         <a class="navbar-brand brand-logo-mini" href="@Url.Action("Dashboard", "Admin")" style="color:white;">
                             <img src="~/Content/template/images/DerbyTyres.png" />
@@ -57,7 +57,7 @@
                     {
 
         <a class="navbar-brand brand-logo" href="@Url.Action("Dashboard", "User")" style="color:white;">
-            <img style="height: 70px;width: 70px;margin-left: 40px;" src="~/Content/template/images/DerbyTyres.png" />
+            <img style="height: 70px;width: 70px;margin-left: 60px;" src="~/Content/template/images/DerbyTyres.png" />
         </a>
                         <a class="navbar-brand brand-logo-mini" href="@Url.Action("Dashboard", "User")" style="color:white;">
                             <img src="~/Content/template/images/DerbyTyres.png" />

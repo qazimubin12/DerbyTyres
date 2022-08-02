@@ -4,6 +4,7 @@ using DerbyTyres.ViewModels;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -72,15 +73,18 @@ namespace DerbyTyres.Controllers
                         Tyre.REkm = float.Parse(((Microsoft.Office.Interop.Excel.Range)range.Cells[row, 11]).Text);
                         Tyre.REmile = float.Parse(((Microsoft.Office.Interop.Excel.Range)range.Cells[row, 12]).Text);
                         Tyre.UsedTyres = ((Microsoft.Office.Interop.Excel.Range)range.Cells[row, 13]).Text;
-                        Tyre.BrandNewTyres = ((Microsoft.Office.Interop.Excel.Range)range.Cells[row, 14]).Text;
-                        Tyre.Stock = int.Parse(((Microsoft.Office.Interop.Excel.Range)range.Cells[row, 15]).Text); 
+                        Tyre.UsedStock = float.Parse(((Microsoft.Office.Interop.Excel.Range)range.Cells[row, 14]).Text);
+                        Tyre.BrandNewTyres = ((Microsoft.Office.Interop.Excel.Range)range.Cells[row, 15]).Text;
+                        Tyre.NewStock = float.Parse(((Microsoft.Office.Interop.Excel.Range)range.Cells[row, 16]).Text);
+                        Tyre.Brand = ((Microsoft.Office.Interop.Excel.Range)range.Cells[row, 17]).Text;
+                        Tyre.LocatedIn = ((Microsoft.Office.Interop.Excel.Range)range.Cells[row, 18]).Text;
                         var List = TyreServices.Instance.GetTyres();
 
                         if (List.Count != 0)
                         {
                             foreach (var item in List)
                             {
-                                if (item.TireSizeDesignation == Tyre.TireSizeDesignation && item.ODmm == Tyre.ODmm)
+                                if (item.TireSizeDesignation == Tyre.TireSizeDesignation && item.ODmm == Tyre.ODmm && item.Brand == Tyre.Brand)
                                 {
                                     isPresent = true;
                                     break;
@@ -120,7 +124,8 @@ namespace DerbyTyres.Controllers
                 }
             }
 
-
+            var Prcoess = Process.GetProcessesByName("EXCEL.EXE").FirstOrDefault();
+            Prcoess.Kill();
 
         }
 
@@ -139,13 +144,13 @@ namespace DerbyTyres.Controllers
             {
 
 
-                if (propertyname == "Status")
+                if (propertyname == "TireSizeDesignation")
                 {
                     Tyre.TireSizeDesignation = value;
                 }
-                if (propertyname == "UsedTyres")
+                if (propertyname == "BrandNewTyres")
                 {
-                    Tyre.UsedTyres = "£" + value;
+                    Tyre.BrandNewTyres = "£" + value;
                 }
                 if (propertyname == "UsedTyres")
                 {
@@ -194,6 +199,32 @@ namespace DerbyTyres.Controllers
                 if (propertyname == "REmile")
                 {
                     Tyre.REmile = float.Parse(value);
+                }
+                if (propertyname == "UsedStock")
+                {
+                    Tyre.UsedStock = float.Parse(value);
+
+                }
+                if (propertyname == "NewStock")
+                {
+                    Tyre.NewStock = float.Parse(value);
+                }
+                if (propertyname == "UsedSold")
+                {
+                    Tyre.UsedSold = float.Parse(value);
+
+                }
+                if (propertyname == "NewSold")
+                {
+                    Tyre.NewStock = float.Parse(value);
+                }
+                if (propertyname == "Brand")
+                {
+                    Tyre.BrandNewTyres = value;
+                }
+                if (propertyname == "LocatedIn")
+                {
+                    Tyre.LocatedIn = value;
                 }
 
 

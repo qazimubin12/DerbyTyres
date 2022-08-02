@@ -61,23 +61,7 @@ namespace DerbyTyres.Services
         }
 
 
-        public List<Tyre> GetTyresLowStocks(string SearchTerm = "")
-        {
-            List<Tyre> Tyres = null;
-            using (var context = new DSContext())
-            {
-                if (!string.IsNullOrEmpty(SearchTerm))
-                {
-                    Tyres = context.Tyres.Where(x => x.Stock < 10 && x.TireSizeDesignation.ToLower().Contains(SearchTerm.ToLower())).ToList();
-                }
-                else
-                {
-                    Tyres = context.Tyres.Where(x => x.Stock < 10).ToList();
-
-                }
-            }
-            return Tyres;
-        }
+        
 
 
         public void SaveTyre(Tyre Tyre)
