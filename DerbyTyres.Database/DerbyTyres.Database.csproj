@@ -61,6 +61,10 @@
     <Compile Include="Migrations\202208010658009_tyresadded.designer.cs">
       <DependentUpon>202208010658009_tyresadded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202208020521439_stocksold.cs" />
+    <Compile Include="Migrations\202208020521439_stocksold.designer.cs">
+      <DependentUpon>202208020521439_stocksold.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DSContext.cs" />
@@ -78,6 +82,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202208010658009_tyresadded.resx">
       <DependentUpon>202208010658009_tyresadded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208020521439_stocksold.resx">
+      <DependentUpon>202208020521439_stocksold.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

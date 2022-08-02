@@ -1,0 +1,121 @@
+﻿@model DerbyTyres.ViewModels.InventoryViewModel
+@{
+    ViewBag.Title = "Index";
+    WebGrid grid = new WebGrid(Model.StockAvailableTires, rowsPerPage: 100);
+}
+
+<div class="card">
+    <div class="card-body">
+        <h2>Stock</h2>
+        <form>
+            <div class="input-group">
+                <input type="text" name="searchterm" class="form-control" placeholder="Search." value="@Model.SearchTerm">
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+
+
+
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="submit"><i class="mdi mdi-account-search"></i> Search</button>
+                    <a class="btn btn-outline-success" href="@Url.Action("Import", "Tyre")"><i class="mdi mdi-account-plus"></i>Import</a>
+
+                </div>
+            </div>
+
+        </form>
+        <hr />
+
+
+        <div class="col col-lg-12">
+
+
+            @grid.GetHtml(
+                    tableStyle: "table table-responsive table-striped table-bordered",
+                    columns: grid.Columns(
+
+grid.Column(header: "ID", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="ID">@item.ID</div></text>),
+grid.Column(header: "TireSizeDesignation", format:@<text><div data-id="@item.ID" data-propertyname="TireSizeDesignation">@item.TireSizeDesignation</div></text>),
+
+grid.Column(header: "UsedTyres", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="UsedTyres">@item.UsedTyres</div></text>),
+grid.Column(header: "BrandNewTyres", format:@<text><div class="edit" data-id="@item.ID" data-propertyname="BrandNewTyres">@item.BrandNewTyres</div></text>),
+grid.Column(header: "Stock", format:@<text><div data-id="@item.ID" data-propertyname="Stock">@item.Stock</div></text>),
+grid.Column(header: "Sold", format:@<input id="@item.ID" class="edit form-control col-md-12" data-id="@item.ID" data-propertyname="Sold" value="@item.Sold" />),
+grid.Column(header: "Action", format: @<button class="ActionButton btn btn-primary" data-id="@item.ID">SOLD</button>)
+
+)
+)
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<style>
+    .w100 {
+        width: 100px;
+    }
+
+    .margin10 {
+        margin-left: 10px;
+    }
+</style>
+
+<script>
+
+    $(document).ready(function () {
+        var oldValue = '';
+        $('.edit').editable({
+            cssclass: 'jeditForm',
+            tooltip: 'click to edit me...',
+            width: 'none',
+            height: 'none',
+            onsubmit: function (settings, original) {
+                oldValue = original.revert;
+            },
+
+            callback: function (value, settings) {
+                var jsonData = $.parseJSON(value);
+                if (jsonData.status) {
+                    $(this).text(jsonData.value);
+                }
+                else {
+                    $(this).text(oldValue);
+                }
+            }
+        })
+
+
+    });
+
+
+    $(".ActionButton").click(function () {
+        let ID = $(this).attr("data-id");
+        var Sold = document.getElementById(ID);
+		$.ajax({
+			url: '@Url.Action("Action", "Inventory")',
+			type: "post",
+            data: {
+                ID: ID,
+                Sold: Sold.value
+            }
+		})
+		.done(function (response) {
+			if(response.Success)
+			{
+				location.reload();
+			}
+			else {
+				$(".errorDiv").html(response.Message);
+			}
+		});
+	});
+
+
+
+
+</script>
+

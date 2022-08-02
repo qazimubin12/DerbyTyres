@@ -23,5 +23,6 @@ namespace DerbyTyres.Entities
         public string UsedTyres { get; set; }
         public string BrandNewTyres { get; set; }
         public float Stock { get; set; }
+        public float Sold { get; set; }
     }
 }

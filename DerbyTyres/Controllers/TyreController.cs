@@ -73,7 +73,7 @@ namespace DerbyTyres.Controllers
                         Tyre.REmile = float.Parse(((Microsoft.Office.Interop.Excel.Range)range.Cells[row, 12]).Text);
                         Tyre.UsedTyres = ((Microsoft.Office.Interop.Excel.Range)range.Cells[row, 13]).Text;
                         Tyre.BrandNewTyres = ((Microsoft.Office.Interop.Excel.Range)range.Cells[row, 14]).Text;
-                        Tyre.Stock = 0;
+                        Tyre.Stock = int.Parse(((Microsoft.Office.Interop.Excel.Range)range.Cells[row, 15]).Text); 
                         var List = TyreServices.Instance.GetTyres();
 
                         if (List.Count != 0)
